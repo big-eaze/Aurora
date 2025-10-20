@@ -15,7 +15,7 @@ export function MenuProvider({ children }) {
 
 
   
-  //specifically for student
+  //specifically for students
   async function loadResults() {
     try {
       const responseViewResults = await axios.get("/results?expand=student");
