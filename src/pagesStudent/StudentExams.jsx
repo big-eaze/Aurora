@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import { studentNavItems } from "../data/navItems";
@@ -9,7 +9,6 @@ import NavMobile from "../components/MobileNav.jsx";
 function StudentExams() {
   const [exams, setExams] = useState([]);
   const [userClass, setUserClass] = useState("");
-  const { displayMenu } = useContext(MenuContext);
 
   async function fetchProfile() {
     try {
@@ -44,10 +43,12 @@ function StudentExams() {
       {/* Sidebar */}
       <Nav2 navItems={studentNavItems} subtitle="Student Panel" />
 
+      <NavMobile navItems={studentNavItems} subtitle="Student Panel" />
+
+
       {/* Main Section */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full overflow-auto">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full overflow-auto">
         <Dir navItems={studentNavItems} />
-        {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Student Panel" />)}
 
         {/* Header */}
         <header className="my-8">

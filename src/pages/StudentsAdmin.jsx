@@ -8,7 +8,7 @@ import { adminNavItems } from "../data/navItems";
 import { FaUser } from "react-icons/fa";
 
 export default function StudentsAdmin() {
-  const { setStudentsData, displayMenu } = useContext(MenuContext);
+  const { setStudentsData } = useContext(MenuContext);
   const [studDetails, setStudDetails] = useState([]);
   const [errors, setErrors] = useState({});
   const [student, setStudent] = useState(false);
@@ -104,9 +104,10 @@ export default function StudentsAdmin() {
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-gray-100 flex flex-col md:flex-row">
       {/* Desktop + Mobile Navigation */}
       <Nav2 navItems={adminNavItems} subtitle="Admin Panel" />
-      {displayMenu && (<NavMobile navItems={adminNavItems} subtitle="Admin Panel" />)}
 
-      <div className="flex-1 flex flex-col md:ml-72 p-2 sm:p-6 md:p-8">
+      <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />
+
+      <div className="flex-1 flex flex-col md:ml-72 p-4 sm:p-6 md:p-8">
 
         <Dir navItems={adminNavItems} />
 

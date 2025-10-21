@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "../Utils/axios.js";
 import Nav2 from "./Nav2";
@@ -8,7 +8,6 @@ import NavMobile from "./MobileNav.jsx";
 
 function ChangePassword({ navItems, subtitle }) {
 
-  const { displayMenu } = useContext(MenuContext);
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -82,7 +81,7 @@ function ChangePassword({ navItems, subtitle }) {
 
       <div className="lg:ml-80 flex flex-col gap-6 p-2 sm:p-6 md:p-8">
         <Dir navItems={navItems} />
-        {displayMenu && <NavMobile navItems={navItems} subtitle={subtitle} />}
+        <NavMobile navItems={navItems} subtitle={subtitle} />
 
         <div className="flex justify-center mt-40">
           <div className="w-full max-w-md bg-[#FFFFFF06] rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 transition-all duration-300">

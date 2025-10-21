@@ -43,7 +43,7 @@ function StaffDashboard() {
     "Assignments reviewed",
     "New student enrolled",
   ]);
-  const { displayMenu, setDisplayMenu } = useContext(MenuContext);
+  const {  setDisplayMenu } = useContext(MenuContext);
 
   async function loadProfile() {
     try {
@@ -139,10 +139,10 @@ function StaffDashboard() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#060e19] via-[#091427] to-[#020a12] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={StaffNavItems} subtitle="Staff Analytics" />
-      {displayMenu && (<NavMobile navItems={StaffNavItems} subtitle="Staff Analytics" />)}
+     <NavMobile navItems={StaffNavItems} subtitle="Staff Analytics" />
 
       {/* Main */}
-      <main className="lg:ml-80 w-full p-2 sm:p-6 md:p-8 overflow-auto">
+      <main className="lg:ml-80 w-full p-4 sm:p-6 md:p-8 overflow-auto">
         {/* Header */}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div className="flex flex-col items-start">

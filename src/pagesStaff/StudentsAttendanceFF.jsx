@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import axios from "../Utils/axios.js";
 import { StaffNavItems } from "../data/navItems";
-import { MenuContext } from "../Utils/MenuContext.jsx";
 import NavMobile from "../components/MobileNav.jsx";
 
 function StudentsAttendanceFF() {
@@ -11,7 +10,6 @@ function StudentsAttendanceFF() {
     new Date().toISOString().split("T")[0]
   );
 
-  const { displayMenu } = useContext(MenuContext);
 
   const [students, setStudents] = useState([]);
   const [modalData, setModalData] = useState({
@@ -93,8 +91,8 @@ function StudentsAttendanceFF() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-gray-100">
       <Nav2 navItems={StaffNavItems} subtitle="Staff Panel" />
-      {displayMenu && <NavMobile navItems={StaffNavItems} subtitle="Staff Panel" />}
-      <div className="flex flex-col lg:ml-80 p-2 sm:p-6 md:p-8 gap-6">
+      <NavMobile navItems={StaffNavItems} subtitle="Staff Panel" />
+      <div className="flex flex-col lg:ml-80 p-4 sm:p-6 md:p-8 gap-6">
         <Dir navItems={StaffNavItems} />
 
         <div className="flex-1 bg-[#FFFFFF06] border border-gray-800 rounded-2xl shadow-md p-6">

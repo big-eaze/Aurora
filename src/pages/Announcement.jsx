@@ -17,7 +17,7 @@ function Announcement() {
     title: "",
     date: new Date().toISOString().split("T")[0],
     time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    content: "",
+    message: "", // ✅ changed from content → message
     receiver: "",
   });
 
@@ -44,48 +44,47 @@ function Announcement() {
   }
 
   async function handleSubmit(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!newAnnouncement.title || !newAnnouncement.content || !newAnnouncement.receiver) {
-    alert("Please fill in all fields.");
-    return;
+    if (!newAnnouncement.title || !newAnnouncement.message || !newAnnouncement.receiver) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await axios.post("/announcements", newAnnouncement);
+
+      // Update instantly in UI
+      setAnnouncement((prev) => [
+        {
+          ...newAnnouncement,
+          id: Math.random(),
+          createdAt: new Date().toISOString(),
+        },
+        ...prev,
+      ]);
+
+      setShowForm(false);
+      setNewAnnouncement({
+        title: "",
+        message: "",
+        receiver: "",
+        date: new Date().toISOString().split("T")[0],
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      });
+    } catch (error) {
+      console.error("Error adding announcement:", error);
+    }
   }
-
-  try {
-    await axios.post("/announcements", newAnnouncement);
-
-    // Instead of replacing, you can **append** to state directly for instant UI update
-    setAnnouncement((prev) => [
-      {
-        ...newAnnouncement,
-        id: Math.random(), // temporary id until backend returns actual one
-        createdAt: new Date().toISOString(),
-      },
-      ...prev,
-    ]);
-
-    setShowForm(false);
-    setNewAnnouncement({
-      title: "",
-      content: "",
-      receiver: "",
-      date: new Date().toISOString().split("T")[0],
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    });
-  } catch (error) {
-    console.error("Error adding announcement:", error);
-  }
-}
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-gray-100 flex flex-col md:flex-row">
       {/* Sidebar */}
       <Nav2 navItems={adminNavItems} subtitle="Admin Panel" />
-      {displayMenu && <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />}
+      <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-80 p-2 sm:p-6 md:p-8">
+      <div className="flex-1 flex flex-col lg:ml-80 p-4 sm:p-6 md:p-8">
         <Dir navItems={adminNavItems} />
 
         {/* Header */}
@@ -146,7 +145,6 @@ function Announcement() {
                   <p className="text-gray-300 text-sm leading-relaxed">
                     {info.message}
                   </p>
-
                 </div>
               ))}
             </div>
@@ -196,9 +194,9 @@ function Announcement() {
               </select>
 
               <textarea
-                name="content"
+                name="message" // ✅ changed from content → message
                 placeholder="Write your announcement here..."
-                value={newAnnouncement.content}
+                value={newAnnouncement.message}
                 onChange={handleInputChange}
                 rows="4"
                 className="w-full p-3 sm:p-4 bg-[#101a2a] rounded-lg border border-[#1e2b3c] text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-cyan-400 outline-none"

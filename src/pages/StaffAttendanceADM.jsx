@@ -7,7 +7,7 @@ import { adminNavItems } from "../data/navItems";
 import NavMobile from "../components/MobileNav.jsx";
 
 function StaffAttendanceADM() {
-  const { staffAtt, setStaffAtt, displayMenu } = useContext(MenuContext);
+  const { staffAtt, setStaffAtt } = useContext(MenuContext);
   const [selectedDate] = useState("2025-06-25");
   const [filteredAttendance, setFilteredAttendance] = useState([]);
 
@@ -30,16 +30,17 @@ function StaffAttendanceADM() {
       }
     }
     loadStaffAttendance();
+
   }, [setStaffAtt]);
 
   return (
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={adminNavItems} subtitle="Admin Panel" />
-      {displayMenu && <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />}
+      <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />
 
       {/* Main */}
-      <main className="flex-1 lg:ml-80 p-2 sm:p-6 md:p-8 overflow-auto">
+      <main className="flex-1 lg:ml-80 p-4 sm:p-6 md:p-8 overflow-auto">
         <Dir navItems={adminNavItems} />
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center my-8">
           <div>
@@ -92,7 +93,8 @@ function StaffAttendanceADM() {
                     >
                       <td className="py-3 px-4 text-slate-300">{idx + 1}</td>
                       <td className="py-3 px-4 font-medium text-white">
-                        {staff.staffDetails.name}
+                        {staff?.staffDetails?.name || "Unknown"}
+
                       </td>
                       <td className="py-3 px-4">
                         <span
@@ -103,7 +105,7 @@ function StaffAttendanceADM() {
                               : "bg-yellow-400/20 text-yellow-300 border border-yellow-500/40"
                             }`}
                         >
-                          {staff.status}
+                          {staff.status || "N/A"}
                         </span>
                       </td>
                     </tr>

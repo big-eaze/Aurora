@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import { studentNavItems } from "../data/navItems";
@@ -9,7 +9,6 @@ import NavMobile from "../components/MobileNav.jsx";
 
 function StudentAnnouncements() {
   const [announcements, setAnnouncements] = useState([]);
-  const { displayMenu } = useContext(MenuContext);
 
   async function fetchAnnouncements() {
     try {
@@ -34,12 +33,11 @@ function StudentAnnouncements() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={studentNavItems} subtitle="Student Panel" />
-      {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Student Panel" />)}
+      <NavMobile navItems={studentNavItems} subtitle="Student Panel" />
 
       {/* Main Content */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full overflow-auto">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full overflow-auto">
         <Dir navItems={studentNavItems} />
-        {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Admin Panel" />)}
         <header className="my-8">
           <h1 className="text-3xl font-bold tracking-tight">
             Student Announcements

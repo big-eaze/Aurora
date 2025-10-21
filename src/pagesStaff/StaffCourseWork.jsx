@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import { StaffNavItems } from "../data/navItems";
 import axios from "../Utils/axios.js";
 import NavMobile from "../components/MobileNav.jsx";
-import { MenuContext } from "../Utils/MenuContext.jsx";
 
 function StaffCourseWork() {
   const [assignments, setAssignments] = useState([]);
-  const { displayMenu } = useContext(MenuContext);
   const [userClass, setUserClass] = useState("");
   const [modal, setModal] = useState(false);
   const [newAssignment, setNewAssignment] = useState({
@@ -91,8 +89,8 @@ function StaffCourseWork() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-gray-100">
       <Nav2 navItems={StaffNavItems} subtitle="Staff Panel" />
-      {displayMenu && <NavMobile navItems={StaffNavItems} subtitle="Staff Panel" />}
-      <div className="flex flex-col lg:ml-80 p-2 sm:p-6 md:p-8 gap-6">
+      <NavMobile navItems={StaffNavItems} subtitle="Staff Panel" />
+      <div className="flex flex-col lg:ml-80 p-4 sm:p-6 md:p-8 gap-6">
         <Dir navItems={StaffNavItems} />
 
         {/* Main Container */}

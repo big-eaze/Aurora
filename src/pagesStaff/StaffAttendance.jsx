@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import axios from "../Utils/axios.js";
 import { StaffNavItems } from "../data/navItems";
-import { MenuContext } from "../Utils/MenuContext.jsx";
 import NavMobile from "../components/MobileNav.jsx";
 
 function StaffAttendance() {
   const [attendanceStatus, setAttendanceStatus] = useState("Not Marked");
-  const { displayMenu } = useContext(MenuContext);
   const [userStaffId, setUserStaffId] = useState("");
   const [selectedDate] = useState(new Date().toISOString().split("T")[0]);
   const [modalData, setModalData] = useState({ isOpen: false, status: "" });
@@ -50,8 +48,8 @@ function StaffAttendance() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-gray-100">
       <Nav2 navItems={StaffNavItems} subtitle="Staff Panel" />
-      {displayMenu && <NavMobile navItems={StaffNavItems} subtitle="Admin Panel" />}
-      <div className="flex flex-col lg:ml-80 p-2 sm:p-6 md:p-8 gap-6">
+      <NavMobile navItems={StaffNavItems} subtitle="Admin Panel" />
+      <div className="flex flex-col lg:ml-80 p-4 sm:p-6 md:p-8 gap-6">
         <Dir navItems={StaffNavItems} />
 
         <div className="flex-1 bg-[#FFFFFF06] p-6 rounded-2xl shadow-md border border-gray-800">

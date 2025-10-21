@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import axios from "../Utils/axios.js";
 import { StaffNavItems } from "../data/navItems";
 import getTimeAgo from "../Utils/getTimeAgo.js";
 import NavMobile from "../components/MobileNav.jsx";
-import { MenuContext } from "../Utils/MenuContext.jsx";
 
 function StaffAnnouncement() {
   const [announcements, setAnnouncements] = useState([]);
-  const { displayMenu } = useContext(MenuContext);
+  
   async function fetchAnnouncements() {
     try {
       const response = await axios.get("/announcements");
@@ -31,9 +30,9 @@ function StaffAnnouncement() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={StaffNavItems} subtitle="Staff Panel" />
-      {displayMenu && <NavMobile navItems={StaffNavItems} subtitle="Admin Panel" />}
+      <NavMobile navItems={StaffNavItems} subtitle="Admin Panel" />
       {/* Main */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full">
         <Dir navItems={StaffNavItems} />
         <header className="my-8">
           <h1 className="text-2xl font-bold mb-1">Staff Announcements</h1>

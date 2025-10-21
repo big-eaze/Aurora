@@ -9,7 +9,7 @@ import { FaUser } from "react-icons/fa";
 import NavMobile from "../components/MobileNav.jsx";
 
 function Staffs() {
-  const { setStaffData, displayMenu } = useContext(MenuContext);
+  const { setStaffData } = useContext(MenuContext);
 
   const [errors, setErrors] = useState({});
   const [staff, setStaff] = useState(false);
@@ -112,10 +112,10 @@ function Staffs() {
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-gray-100 flex flex-col md:flex-row">
       {/* Desktop + Mobile Navigation */}
       <Nav2 navItems={adminNavItems} subtitle="Admin Panel" />
-      {displayMenu && <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />}
+      <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />
 
       {/* Main Section */}
-      <div className="flex-1 flex flex-col md:ml-72 p-2 sm:p-6 md:p-8">
+      <div className="flex-1 flex flex-col md:ml-72 p-4 sm:p-6 md:p-8">
         <Dir navItems={adminNavItems} />
 
         {/* Header + Toggle Buttons */}
@@ -129,8 +129,8 @@ function Staffs() {
             <button
               onClick={() => setStaff(false)}
               className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm sm:text-base transition ${!staff
-                  ? "bg-cyan-500/20 border border-cyan-400/50 text-cyan-300"
-                  : "hover:bg-white/10 border border-white/10 text-slate-300"
+                ? "bg-cyan-500/20 border border-cyan-400/50 text-cyan-300"
+                : "hover:bg-white/10 border border-white/10 text-slate-300"
                 }`}
             >
               All Staffs
@@ -138,8 +138,8 @@ function Staffs() {
             <button
               onClick={() => setStaff(true)}
               className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm sm:text-base transition ${staff
-                  ? "bg-indigo-500/20 border border-indigo-400/50 text-indigo-300"
-                  : "hover:bg-white/10 border border-white/10 text-slate-300"
+                ? "bg-indigo-500/20 border border-indigo-400/50 text-indigo-300"
+                : "hover:bg-white/10 border border-white/10 text-slate-300"
                 }`}
             >
               Add Staff

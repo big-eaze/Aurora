@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import { studentNavItems } from "../data/navItems";
 import axios from "../Utils/axios.js";
-import { MenuContext } from "../Utils/MenuContext.jsx";
 import NavMobile from "../components/MobileNav.jsx";
 
 function StudentResults() {
   const [userAdmissionNumber, setUserAdmissionNumber] = useState("");
   const [resultsData, setResultsData] = useState([]);
-  const { displayMenu } = useContext(MenuContext);
 
   async function loadProfile() {
     try {
@@ -41,10 +39,10 @@ function StudentResults() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={studentNavItems} subtitle="Student Panel" />
-      {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Student Panel" />)}
+      <NavMobile navItems={studentNavItems} subtitle="Student Panel" />
 
       {/* Main Section */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full overflow-auto">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full overflow-auto">
         <Dir navItems={studentNavItems} />
 
         {/* Header */}

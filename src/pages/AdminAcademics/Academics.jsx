@@ -70,7 +70,7 @@ function Academics() {
       <Nav2 navItems={adminNavItems} subtitle="Admin Panel" />
       {displayMenu && (<NavMobile navItems={adminNavItems} subtitle="Admin Panel" />)}
 
-      <div className="flex-1 lg:ml-80 p-2 sm:p-6 md:p-8">
+      <div className="flex-1 lg:ml-80 p-4 sm:p-6 md:p-8">
         <Dir navItems={adminNavItems} />
 
 

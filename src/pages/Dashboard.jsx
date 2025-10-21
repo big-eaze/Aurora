@@ -18,6 +18,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { MenuContext } from "../Utils/MenuContext.jsx";
 import { FiMenu } from "react-icons/fi";
 import NavMobile from "../components/MobileNav.jsx";
+import { AnimatePresence } from "framer-motion";
 
 ChartJS.register(
   CategoryScale,
@@ -41,7 +42,7 @@ function Dashboard() {
     "Daily backup completed",
     "No suspicious activity detected",
   ]);
-  const { displayMenu, setDisplayMenu } = useContext(MenuContext);
+  const { setDisplayMenu } = useContext(MenuContext);
 
   async function fetchData() {
     try {
@@ -127,11 +128,13 @@ function Dashboard() {
       {/* Sidebar */}
 
       <Nav2 navItems={adminNavItems} subtitle="Admin Analytics" />
-      {displayMenu && (<NavMobile navItems={adminNavItems} subtitle="Admin Panel" />)}
+
+      <NavMobile navItems={adminNavItems} subtitle="Admin Panel" />
+
 
 
       {/* Main */}
-      <main className="lg:ml-80 w-full p-2 sm:p-6 md:p-8 overflow-auto">
+      <main className="lg:ml-80 w-full p-4 sm:p-6 md:p-8 overflow-auto">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
 
           <div className="flex flex-col items-start">

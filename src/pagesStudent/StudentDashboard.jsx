@@ -22,7 +22,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip,
 
 function StudentDashboard() {
 
-  const { displayMenu, setDisplayMenu } = useContext(MenuContext);
+  const { setDisplayMenu } = useContext(MenuContext);
   const [studentEssentials, setStudentEssentials] = useState({
     noOfCourses: 0,
     academicPerformance: 0,
@@ -110,9 +110,9 @@ function StudentDashboard() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={studentNavItems} subtitle="Student Analytics" />
-      {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Student Panel" />)}
+      <NavMobile navItems={studentNavItems} subtitle="Student Panel" />
       {/* Main */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full min-h-screen">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full min-h-screen">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div className="flex flex-col items-start">
             <button

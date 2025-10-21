@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav2 from "../components/Nav2";
 import Dir from "../components/Dir";
 import { studentNavItems } from "../data/navItems";
@@ -9,7 +9,6 @@ import { MenuContext } from "../Utils/MenuContext.jsx";
 function StudentAssignments() {
   const [assignments, setAssignments] = useState([]);
   const [userClass, setUserClass] = useState("");
-  const { displayMenu } = useContext(MenuContext);
 
   async function fetchProfile() {
     try {
@@ -41,11 +40,12 @@ function StudentAssignments() {
     <div className="flex min-h-screen bg-gradient-to-b from-[#07101a] via-[#081022] to-[#030d15] text-slate-100 font-poppins">
       {/* Sidebar */}
       <Nav2 navItems={studentNavItems} subtitle="Student Panel" />
+      <NavMobile navItems={studentNavItems} subtitle="Student Panel" />
 
       {/* Main Section */}
-      <main className="lg:ml-80 p-2 sm:p-6 md:p-8 w-full overflow-auto">
+      <main className="lg:ml-80 p-4 sm:p-6 md:p-8 w-full overflow-auto">
         <Dir navItems={studentNavItems} />
-        {displayMenu && (<NavMobile navItems={studentNavItems} subtitle="Student Panel" />)}
+        
 
         <header className="my-8">
           <h1 className="text-3xl font-bold tracking-tight">Assignments</h1>
